@@ -9,3 +9,16 @@ resource "google_cloud_run_v2_service" "ai-garden-ingress" {
     }
   }
 }
+
+resource "google_cloud_run_service_iam_policy" "public-access" {
+    service = google_cloud_run_v2_service.ai-garden-ingress.name
+    location = google_cloud_run_v2_service.ai-garden-ingress.location
+    policy_data = data.google_iam_policy.public-access-policy-data.policy_data
+}
+
+data "google_iam_policy" "public-access-policy-data" {
+    binding {
+        role = "roles/run.invoker"
+        members = ["allUsers"]
+    }
+}
