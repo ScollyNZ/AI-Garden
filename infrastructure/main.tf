@@ -22,3 +22,37 @@ data "google_iam_policy" "public-access-policy-data" {
         members = ["allUsers"]
     }
 }
+
+resource "google_pubsub_schema" "ai-garden-event" {
+  name = "ai-garden-event"
+  type = "AVRO"
+  definition = <<-EOT
+    {
+    "type": "record",
+    "name": "Avro",
+    "fields": [
+    {
+      "name": "sensor_id",
+      "type": "string"
+    },
+    {
+      "name": "humidity",
+      "type": "float"
+    },
+    {
+        "name":"moisture",
+        "type":"float"
+    }
+    ]
+    }
+    EOT
+}
+
+resource "google_pubsub_topic" "ai-garden-events" {
+  name = "ai-garden-events"
+    depends_on = [google_pubsub_schema.ai-garden-event]
+    schema_settings {
+        schema = "projects/ai-garden-427303/schemas/ai-garden-event"
+        encoding = "JSON"
+  }
+}
