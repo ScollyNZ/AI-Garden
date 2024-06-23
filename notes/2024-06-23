@@ -1,0 +1,10 @@
+# 2024-06-23
+
+1. Google has retired IoT core so no point building against that. Will look to push Esp32 messages on to pub/sub directly
+1. Initial searches for ESP32 Google Pub/Sub client all refer to MQTT and IOT hub, which isn't going to help. To keep things simple, I'll start with a Cloud Run job
+1.1 Cloud Run can scale (which I don't care about at this point) but it can also expose a service on a public IP, can host Python and will enable proxing incoming data through to a pub/sub topic.
+1.1 Can use a code deployment method, so no need to build a container
+1.1 Can host long running tasks, such as waiting for incoming connections. This is a CloudRun service, not a CloudRun job
+1.1 Free tier will probably cover all costs
+1.1 Can have a custom domain, for later ;)
+1. I want to learn more about terraform, having managed teams that use it but never written any Terraform code. Therefore, starting with https://www.youtube.com/watch?v=5Yz1UfFAxdo
