@@ -27,3 +27,7 @@ How do I optimise seed planting time, across a variety of environments and micro
 
 1. Build some basic IoT type sensors using the ESP32. Initial configuration of temperature, soil moisture and humidity (possibly, if I have any in my draw...)
 2. Record data from these sensors using Google services. Probably IoT Hub --> Pub/Sub --> Data Flow --> Big Query. I'm not aiming for an optimised data pipeline, I'm aiming to use common services so I can learn about them.
+3. Add a light sensor
+4. Place seed trays with written labels on them in with the sensor, take a photo one (or twice) a day. Feed the photo into Gemini to extract the label and when the seedlings first appear.
+5. Record seedling types, environmental conditions and time to emerge
+6. For bonus points, include a guage in the photo and use Gemini to measure the growth rate.
